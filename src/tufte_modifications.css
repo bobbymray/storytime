@@ -1,0 +1,6 @@
+section {
+  padding-bottom: 0;
+}
+section + section {
+  padding-top: 0;
+}
