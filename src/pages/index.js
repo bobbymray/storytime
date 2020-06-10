@@ -57,6 +57,12 @@ export async function getStaticProps () {
 
   const [home, stories] = await Promise.all([homePromise, storiesPromise])
 
+  stories.sort((a, b) => {
+    const articleFreeA = a.title.replace(/^(an?|the) /i, '')
+    const articleFreeB = b.title.replace(/^(an?|the) /i, '')
+    return (articleFreeA > articleFreeB) ? 1 : -1
+  })
+
   return {
     props: { home, stories },
     unstable_revalidate: 1
