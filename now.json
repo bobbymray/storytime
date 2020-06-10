@@ -1,0 +1,10 @@
+{
+  "env": {
+    "NEXT_PUBLIC_STORYTIME_SANITY_PROJECT_ID": "@storytime_sanity_project_id"
+  },
+  "build": {
+    "env": {
+      "NEXT_PUBLIC_STORYTIME_SANITY_PROJECT_ID": "@storytime_sanity_project_id"
+    }
+  }
+}
