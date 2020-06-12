@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import BlockContent from '@sanity/block-content-to-react'
 import { getStoryBySlug } from '../../lib/api'
+import Skeleton from '../components/Skeleton'
 
 import {
   figure,
@@ -46,7 +47,7 @@ export default function Story ({ story }) {
 
         {
           router.isFallback
-            ? <p>Story Skeleton</p>
+            ? <Skeleton />
             : (
               <>
                 <h1>
