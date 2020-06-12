@@ -57,11 +57,12 @@ export function sidenote (props) {
 
   return (
     <>
+      {/* <pre>{JSON.stringify(props, null, 2)}</pre> */}
       <label htmlFor={props._key} className='margin-toggle sidenote-number' />
       <input type='checkbox' id={props._key} className='margin-toggle' />
       <span className='sidenote'>
         <BlockContent
-          blocks={props.mark.portableText}
+          blocks={props.mark.content}
           serializers={serializers}
         />
       </span>
@@ -121,7 +122,7 @@ export function marginnote (props) {
                   : child.text
         })
 
-        return <>{output}</>
+        return <span className='block-span'>{output} </span>
       }
     }
   }
@@ -132,7 +133,7 @@ export function marginnote (props) {
       <input type='checkbox' id={props._key} className='margin-toggle' />
       <span className='marginnote'>
         <BlockContent
-          blocks={props.mark.portableText}
+          blocks={props.mark.content}
           serializers={serializers}
         />
       </span>

@@ -29,7 +29,7 @@ export default function Story ({ story }) {
   return (
     <>
       <header>
-        <nav>
+        <nav style={{marginTop: '1rem'}}>
           <Link href='/'>
             <a>Story Time</a>
           </Link>

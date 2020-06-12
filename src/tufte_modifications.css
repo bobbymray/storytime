@@ -4,3 +4,9 @@ section {
 section + section {
   padding-top: 0;
 }
+.block-span {
+  display: block;
+}
+* + .block-span {
+  margin-top: 0.5rem;
+}
