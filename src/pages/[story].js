@@ -57,13 +57,12 @@ export default function Story ({ story }) {
 
                 {story.author && <p className='subtitle'>{story.author}</p>}
 
-                {story.content && story.content.map(section => (
+                {story.content &&
                   <BlockContent
-                    key={section._key}
-                    blocks={section.text}
+                    blocks={story.content}
                     serializers={serializers}
                   />
-                ))}
+                }
 
                 <style jsx>
                   {`
@@ -92,6 +91,13 @@ export async function getStaticPaths () {
 
 export async function getStaticProps ({ params }) {
   const story = await getStoryBySlug(params.story)
+
+  if (story._type === 'longStory') {
+    story.content = story.sections.reduce((a, section) => {
+      return a = [...a, ...section.content]
+    }, [])
+    story.sections = []
+  }
   return {
     props: { story },
     unstable_revalidate: 1
