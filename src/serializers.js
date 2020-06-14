@@ -14,19 +14,15 @@ export function figure (node, width) {
   const src = width ? urlFor(node.asset).width(width).url() : urlFor(node.asset).url()
 
   return (
-    <figure key={node._key}>
-      {/* <pre>{JSON.stringify(node, null, 2)}</pre> */}
-      <div
-        className='lqip'
-        style={{
-          backgroundImage: `url(${node.lazyLoad.metadata.lqip})`,
-          paddingBottom
-        }}
-      >
-        <img src={src} />
-      </div>
-      {node.caption && <figcaption>{node.caption}</figcaption>}
-    </figure>
+    <span
+      className='lqip'
+      style={{
+        backgroundImage: `url(${node.lazyLoad.metadata.lqip})`,
+        paddingBottom
+      }}
+    >
+      <img src={src} key={node._key} />
+    </span>
   )
 }
 
