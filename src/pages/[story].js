@@ -16,12 +16,7 @@ const serializers = {
   container: ({ children }) => <section>{children}</section>,
   marks: { newthought, sidenote, marginnote },
   types: {
-    figure: props => (
-      <figure>
-        {figure(props)}
-        {props.node.caption && <figcaption>{props.node.caption}</figcaption>}
-      </figure>
-    )
+    figure: props => figure(props.node, 700)
   }
 }
 

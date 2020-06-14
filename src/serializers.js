@@ -1,13 +1,33 @@
 import BlockContent from '@sanity/block-content-to-react'
-import imageUrl from '@sanity/image-url'
+import imageUrlBuilder from '@sanity/image-url'
 import sanityClient from '../lib/sanity'
 
 function urlFor (source) {
-  return imageUrl(sanityClient).image(source)
+  return imageUrlBuilder(sanityClient).image(source).auto('format')
 }
 
-export function figure (props) {
-  return <img src={urlFor(props.node)} />
+export function figure (node, width) {
+  const paddingBottom = (
+    node.lazyLoad.metadata.dimensions.height / node.lazyLoad.metadata.dimensions.width * 100
+  ) + '%'
+
+  const src = width ? urlFor(node.asset).width(width).url() : urlFor(node.asset).url()
+
+  return (
+    <figure key={node._key}>
+      {/* <pre>{JSON.stringify(node, null, 2)}</pre> */}
+      <div
+        className='lqip'
+        style={{
+          backgroundImage: `url(${node.lazyLoad.metadata.lqip})`,
+          paddingBottom
+        }}
+      >
+        <img src={src} />
+      </div>
+      {node.caption && <figcaption>{node.caption}</figcaption>}
+    </figure>
+  )
 }
 
 export function newthought ({ children }) {
@@ -57,7 +77,6 @@ export function sidenote (props) {
 
   return (
     <>
-      {/* <pre>{JSON.stringify(props, null, 2)}</pre> */}
       <label htmlFor={props._key} className='margin-toggle sidenote-number' />
       <input type='checkbox' id={props._key} className='margin-toggle' />
       <span className='sidenote'>
@@ -80,7 +99,7 @@ export function marginnote (props) {
 
     types: {
       figure: props => {
-        return figure(props)
+        return figure(props.node, 400)
       },
       block: props => {
         const { children, markDefs } = props.node

@@ -11,3 +11,12 @@ section + section {
 * + .block-span {
   margin-top: 0.5rem;
 }
+.marginnote figure {
+  margin: 0;
+  max-width: 100%;
+}
+.lqip {
+  background-repeat: no-repeat;
+  background-size: 100%;
+  height: 0;
+}
